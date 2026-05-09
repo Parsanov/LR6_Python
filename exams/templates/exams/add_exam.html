@@ -1,0 +1,61 @@
+{% extends 'exams/base.html' %}
+{% block title %}Додати іспит{% endblock %}
+{% block body %}
+
+<h2 class="fw-bold mb-1">Додати іспит</h2>
+<p class="text-muted mb-4">Форма Django ModelForm для таблиці <code>Exam</code></p>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <form method="POST">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">{{ form.subject.label }}</label>
+            {{ form.subject }}
+            {% if form.subject.errors %}
+              <div class="text-danger small mt-1">{{ form.subject.errors|join:", " }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">{{ form.student.label }}</label>
+            {{ form.student }}
+            {% if form.student.errors %}
+              <div class="text-danger small mt-1">{{ form.student.errors|join:", " }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">{{ form.date.label }}</label>
+            {{ form.date }}
+            {% if form.date.errors %}
+              <div class="text-danger small mt-1">{{ form.date.errors|join:", " }}</div>
+            {% endif %}
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold">{{ form.mark.label }} (0–100)</label>
+            {{ form.mark }}
+            {% if form.mark.errors %}
+              <div class="text-danger small mt-1">{{ form.mark.errors|join:", " }}</div>
+            {% endif %}
+          </div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-success px-4">
+              <i class="bi bi-plus-circle me-1"></i>Зберегти
+            </button>
+            <a href="{% url 'exams:index' %}" class="btn btn-outline-secondary">
+              Скасувати
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

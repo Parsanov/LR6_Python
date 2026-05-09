@@ -1,0 +1,73 @@
+{% load static %}
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}Журнал іспитів{% endblock %}</title>
+  <!-- favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>">
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'exams/style.css' %}"/>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="{% url 'exams:index' %}">
+      📋 Журнал іспитів
+    </a>
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-search me-1"></i>Запити
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="{% url 'exams:query1' %}">
+              1. Іспити з предмета
+            </a></li>
+            <li><a class="dropdown-item" href="{% url 'exams:query2' %}">
+              2. Студенти за предметом і датою
+            </a></li>
+            <li><a class="dropdown-item" href="{% url 'exams:query3' %}">
+              3. Перші 5 іспитів
+            </a></li>
+            <li><a class="dropdown-item" href="{% url 'exams:query4' %}">
+              4. Кількість студентів по предметах
+            </a></li>
+            <li><a class="dropdown-item" href="{% url 'exams:query5' %}">
+              5. Студенти нижче середньої
+            </a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'add_exam' %}active{% endif %}"
+             href="{% url 'exams:add_exam' %}">
+            <i class="bi bi-plus-circle me-1"></i>Додати іспит
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.resolver_match.url_name == 'shell' %}active{% endif %}"
+             href="{% url 'exams:shell' %}">
+            <i class="bi bi-terminal me-1"></i>Shell
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-5">
+  {% block body %}{% endblock %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

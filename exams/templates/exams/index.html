@@ -1,0 +1,84 @@
+{% extends 'exams/base.html' %}
+{% block title %}Головна — Журнал іспитів{% endblock %}
+{% block body %}
+
+<h1 class="fw-bold mb-2">📋 Журнал іспитів</h1>
+<p class="text-muted mb-4">Варіант 1 · N = ord("P") % 2 + 1 = 1</p>
+
+<div class="row g-3">
+
+  <div class="col-md-6 col-lg-4">
+    <a href="{% url 'exams:query1' %}" class="card query-card text-decoration-none h-100">
+      <div class="card-body">
+        <div class="query-num">1</div>
+        <h5 class="card-title mt-2">Іспити з предмета</h5>
+        <p class="card-text text-muted small">
+          Вибір предмета через <code>select</code> → повна інформація про всі іспити
+        </p>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-6 col-lg-4">
+    <a href="{% url 'exams:query2' %}" class="card query-card text-decoration-none h-100">
+      <div class="card-body">
+        <div class="query-num">2</div>
+        <h5 class="card-title mt-2">Студенти за предметом і датою</h5>
+        <p class="card-text text-muted small">
+          Вибір предмета та дати → список прізвищ студентів
+        </p>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-6 col-lg-4">
+    <a href="{% url 'exams:query3' %}" class="card query-card text-decoration-none h-100">
+      <div class="card-body">
+        <div class="query-num">3</div>
+        <h5 class="card-title mt-2">Перші 5 іспитів</h5>
+        <p class="card-text text-muted small">
+          Таблиця з повною інформацією про перші 5 записів
+        </p>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-6 col-lg-4">
+    <a href="{% url 'exams:query4' %}" class="card query-card text-decoration-none h-100">
+      <div class="card-body">
+        <div class="query-num">4</div>
+        <h5 class="card-title mt-2">Кількість студентів по предметах</h5>
+        <p class="card-text text-muted small">
+          Групування за предметом → кількість унікальних студентів
+        </p>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-6 col-lg-4">
+    <a href="{% url 'exams:query5' %}" class="card query-card text-decoration-none h-100">
+      <div class="card-body">
+        <div class="query-num">5</div>
+        <h5 class="card-title mt-2">Студенти нижче середньої</h5>
+        <p class="card-text text-muted small">
+          Знайти студентів з оцінкою нижче середньої з будь-якого предмета
+        </p>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-6 col-lg-4">
+    <a href="{% url 'exams:add_exam' %}" class="card query-card add-card text-decoration-none h-100">
+      <div class="card-body">
+        <div class="query-num">+</div>
+        <h5 class="card-title mt-2">Додати іспит</h5>
+        <p class="card-text text-muted small">
+          Форма ModelForm для додавання нового запису до таблиці Exam
+        </p>
+      </div>
+    </a>
+  </div>
+
+</div>
+
+{% endblock %}

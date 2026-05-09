@@ -1,0 +1,41 @@
+{% extends 'exams/base.html' %}
+{% block title %}Запит 2 — Студенти за предметом і датою{% endblock %}
+{% block body %}
+<h2 class="fw-bold mb-1">Запит 2</h2>
+<p class="text-muted mb-4">Прізвища студентів, що складали іспит з обраного предмета в задану дату</p>
+
+<form method="GET" class="row g-2 mb-4">
+  <div class="col-md-4">{{ form.subject }}</div>
+  <div class="col-md-3">{{ form.date }}</div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary">
+      <i class="bi bi-search me-1"></i>Знайти
+    </button>
+  </div>
+  {% if form.date.errors %}<div class="text-danger small">{{ form.date.errors|join:", " }}</div>{% endif %}
+</form>
+
+{% if students is not None %}
+  {% if students %}
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+      <thead class="table-dark">
+        <tr><th>#</th><th>Прізвище</th><th>Ім'я</th><th>Стать</th></tr>
+      </thead>
+      <tbody>
+        {% for s in students %}
+        <tr>
+          <td class="text-muted">{{ forloop.counter }}</td>
+          <td>{{ s.last_name }}</td>
+          <td>{{ s.first_name }}</td>
+          <td>{{ s.get_gender_display }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="alert alert-warning">Студентів за даним критерієм не знайдено.</div>
+  {% endif %}
+{% endif %}
+{% endblock %}

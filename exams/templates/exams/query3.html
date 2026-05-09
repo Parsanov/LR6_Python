@@ -1,0 +1,28 @@
+{% extends 'exams/base.html' %}
+{% block title %}Запит 3 — Перші 5 іспитів{% endblock %}
+{% block body %}
+<h2 class="fw-bold mb-1">Запит 3</h2>
+<p class="text-muted mb-4">Перші 5 іспитів у базі даних</p>
+<div class="table-responsive">
+  <table class="table table-striped table-hover align-middle">
+    <thead class="table-dark">
+      <tr><th>#</th><th>Студент</th><th>Предмет</th><th>Семестр</th><th>Кредити</th><th>Дата</th><th>Оцінка</th></tr>
+    </thead>
+    <tbody>
+      {% for e in exams %}
+      <tr>
+        <td class="text-muted">{{ forloop.counter }}</td>
+        <td>{{ e.student }}</td>
+        <td>{{ e.subject.name }}</td>
+        <td>{{ e.subject.semester }}</td>
+        <td>{{ e.subject.credits }}</td>
+        <td>{{ e.date }}</td>
+        <td><span class="badge {% if e.mark >= 90 %}bg-success{% elif e.mark >= 75 %}bg-primary{% elif e.mark >= 60 %}bg-warning text-dark{% else %}bg-danger{% endif %}">{{ e.mark }}</span></td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="7" class="text-center text-muted">Записів немає</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
